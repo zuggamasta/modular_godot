@@ -24,4 +24,4 @@ margin_bottom = 198.0
 scenes = [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 1 ) ]
 
 [node name="Node2D" parent="." instance=ExtResource( 6 )]
-position = Vector2( 796.334, 505.78 )
+position = Vector2( 768.982, 502.212 )
