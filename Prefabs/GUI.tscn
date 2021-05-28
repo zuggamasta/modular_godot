@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Fonts/SourceSerifPro-Bold.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Assets/Icons/icon1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Icons/x.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Icons/icon2.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Icons/icon3.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/GUI.cs" type="Script" id=5]
@@ -439,15 +439,15 @@ WindowDialog/icons/close = null
 WindowDialog/icons/close_highlight = null
 WindowDialog/styles/panel = null
 
-[sub_resource type="ShortCut" id=4]
+[sub_resource type="ShortCut" id=3]
 
 [node name="GUI" type="MarginContainer"]
 anchor_right = 1.0
 margin_bottom = 120.0
-custom_constants/margin_right = 64
-custom_constants/margin_top = 64
-custom_constants/margin_left = 64
-custom_constants/margin_bottom = 64
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -455,10 +455,10 @@ __meta__ = {
 scenes = [  ]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_left = 64.0
-margin_top = 64.0
-margin_right = 1856.0
-margin_bottom = 134.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 1904.0
+margin_bottom = 86.0
 
 [node name="Button1" type="Button" parent="HBoxContainer"]
 margin_right = 78.0
@@ -490,7 +490,7 @@ margin_bottom = 70.0
 focus_mode = 0
 theme = SubResource( 2 )
 enabled_focus_mode = 0
-shortcut = SubResource( 4 )
+shortcut = SubResource( 3 )
 text = "Next"
 icon = ExtResource( 4 )
 flat = true

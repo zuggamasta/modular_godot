@@ -20,7 +20,7 @@ polygon = PoolVector2Array( 0, 0, 1920, 0, 1920, 1080, 0, 1080 )
 
 [node name="GUI" parent="." instance=ExtResource( 5 )]
 margin_right = 370.0
-margin_bottom = 198.0
+margin_bottom = 16.0
 scenes = [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 1 ) ]
 
 [node name="Node2D" parent="." instance=ExtResource( 6 )]

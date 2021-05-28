@@ -21,7 +21,7 @@ frame = 1
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
-width = 20.0
+width = 15.0
 default_color = Color( 0.054902, 0.760784, 0.482353, 1 )
 joint_mode = 2
 begin_cap_mode = 2
