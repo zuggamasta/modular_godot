@@ -31,6 +31,7 @@ public class GUI : MarginContainer
 
 
     private void _on_Button1_button_up(){
+        Input.ActionPress("ui_accept");
     }
 
     private void _on_Button2_button_up(){
