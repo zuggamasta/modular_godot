@@ -9,12 +9,14 @@ script = ExtResource( 1 )
 [node name="active" type="Node2D" parent="."]
 
 [node name="tl" type="Sprite" parent="active"]
+modulate = Color( 1, 1, 1, 0.266667 )
 texture = ExtResource( 2 )
 centered = false
 hframes = 4
 vframes = 4
 
 [node name="tr" type="Sprite" parent="active"]
+modulate = Color( 1, 1, 1, 0.266667 )
 position = Vector2( 1788.12, 0 )
 texture = ExtResource( 2 )
 centered = false
@@ -23,6 +25,7 @@ vframes = 4
 frame = 1
 
 [node name="bl" type="Sprite" parent="active"]
+modulate = Color( 1, 1, 1, 0.266667 )
 position = Vector2( 4.3454, 947.29 )
 texture = ExtResource( 2 )
 centered = false
@@ -31,6 +34,7 @@ vframes = 4
 frame = 4
 
 [node name="br" type="Sprite" parent="active"]
+modulate = Color( 1, 1, 1, 0.266667 )
 position = Vector2( 1789.54, 953.981 )
 texture = ExtResource( 2 )
 centered = false

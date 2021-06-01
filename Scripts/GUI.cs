@@ -31,19 +31,21 @@ public class GUI : MarginContainer
 
 
     private void _on_Button1_button_up(){
-        Input.ActionPress("ui_accept");
+        Input.ActionPress("ui_cancel");
     }
 
     private void _on_Button2_button_up(){
-        activeScene--;
-        if(activeScene<0) activeScene = scenes.Length-1;
-        loadNextScene();
+        Input.ActionPress("ui_left");
+        // activeScene--;
+        // if(activeScene<0) activeScene = scenes.Length-1;
+        // loadNextScene();
     }
 
     private void _on_Button3_button_up(){
-        activeScene++;
-        if(activeScene>=scenes.Length) activeScene = 0;
-        loadNextScene();
+        Input.ActionPress("ui_right");
+        // activeScene++;
+        // if(activeScene>=scenes.Length) activeScene = 0;
+        // loadNextScene();
     }
 
     private void loadNextScene(){

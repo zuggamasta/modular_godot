@@ -1,7 +1,7 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/Fonts/SourceSerifPro-Bold.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Assets/Icons/x.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Icons/folder.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Icons/icon2.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Icons/icon3.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/GUI.cs" type="Script" id=5]
@@ -440,12 +440,6 @@ WindowDialog/icons/close = null
 WindowDialog/icons/close_highlight = null
 WindowDialog/styles/panel = null
 
-[sub_resource type="InputEventAction" id=3]
-action = "ui_accept"
-
-[sub_resource type="ShortCut" id=4]
-shortcut = SubResource( 3 )
-
 [sub_resource type="InputEventAction" id=5]
 action = "ui_left"
 
@@ -490,8 +484,6 @@ margin_bottom = 70.0
 focus_mode = 0
 theme = SubResource( 2 )
 shortcut_in_tooltip = false
-enabled_focus_mode = 0
-shortcut = SubResource( 4 )
 text = "Next"
 icon = ExtResource( 2 )
 flat = true
@@ -504,7 +496,6 @@ margin_bottom = 70.0
 focus_mode = 0
 theme = SubResource( 2 )
 shortcut_in_tooltip = false
-enabled_focus_mode = 0
 shortcut = SubResource( 6 )
 text = "Next"
 icon = ExtResource( 3 )
@@ -518,7 +509,6 @@ margin_bottom = 70.0
 focus_mode = 0
 theme = SubResource( 2 )
 shortcut_in_tooltip = false
-enabled_focus_mode = 0
 shortcut = SubResource( 8 )
 text = "Next"
 icon = ExtResource( 4 )
@@ -538,8 +528,6 @@ rect_clip_content = false
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 6 )
-text = "wtf why did i loose the spaces now also this should be only one linehelp
-"
 fit_content_height = true
 scroll_active = false
 
