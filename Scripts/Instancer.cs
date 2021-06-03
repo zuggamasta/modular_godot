@@ -26,7 +26,7 @@ public class Instancer : Node2D
                 //newNode.GlobalPosition = GetGlobalMousePosition();
                 this.AddChild(newNode);
             }
-            if(Input.IsActionJustPressed("ui_cancel")&&GetChildCount()>0){
+            if(Input.IsActionJustPressed("ui_delete")&&GetChildCount()>0){
                     GetChild(GetChildCount()-1).QueueFree();
                 
             }

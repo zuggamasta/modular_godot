@@ -4,33 +4,41 @@ using System.Collections.Generic;
 
 public class SlideLoader : Node2D
 {
-
     public Vector2 window = new Vector2(1920f,1080f);
 
+
+    // File path and slide data
     List<String> filepath = new List<String>();
     List<Sprite> slides = new List<Sprite>();
-    bool confirmed;
 
+    HBoxContainer slideContainer;
+    bool confirmed;
+    int activeSlide =0;
+    FileDialog filePopup;
+    float slideAnimator = 0f;
+
+    // Camera data
     Camera2D camera;
     float zoom = 1;
     float cameraZoom = 1;
 
-    int activeSlide =0;
-    float animator = 0f;
+
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         camera = GetNode<Camera2D>("/root/MainScene/Camera2D");
+        filePopup = GetNode<FileDialog>("MarginContainer/VBoxContainer/FileDialog");
+        slideContainer = GetNode<HBoxContainer>("MarginContainer/VBoxContainer/HBoxContainer");
     }
 
-  // Called every frame. 'delta' is the elapsed time since the previous frame.
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
         if(Input.IsActionJustPressed("ui_cancel")){
-            GetNode<FileDialog>("MarginContainer/VBoxContainer/FileDialog").Popup_(new Rect2(window.x/4,window.y/4,window.x/2f,window.y/2f));
-            GetNode<FileDialog>("MarginContainer/VBoxContainer/FileDialog").CurrentPath ="res://Assets/";
-            foreach(TextureRect texRec in GetNode<HBoxContainer>("MarginContainer/VBoxContainer/HBoxContainer").GetChildren()){
+            filePopup.Popup_(new Rect2(window.x/4,window.y/4,window.x/2f,window.y/2f));
+            filePopup.CurrentPath ="res://Assets/";
+            foreach(TextureRect texRec in slideContainer.GetChildren()){
                 texRec.QueueFree();
             }
         }
@@ -43,7 +51,7 @@ public class SlideLoader : Node2D
                 var texture = ResourceLoader.Load(fp) as Texture;
                 var newNode = new TextureRect();  
                 newNode.Texture = texture;   
-                GetNode<HBoxContainer>("MarginContainer/VBoxContainer/HBoxContainer").AddChild(newNode);               
+                slideContainer.AddChild(newNode);               
                 GD.Print(newNode);
             }
             
@@ -53,23 +61,24 @@ public class SlideLoader : Node2D
 
         if(Input.IsActionJustPressed("ui_left")){
             activeSlide--;
-            animator =1f;
+            slideAnimator =1f;
         }
 
         if(Input.IsActionJustPressed("ui_right")){
             activeSlide++;
-            animator=1f;
+            slideAnimator=1f;
         }
 
-        if(animator>0){
-            this.Position= Position.LinearInterpolate(Vector2.Left*window*activeSlide, 1-animator);
-            animator-=(delta*0.1f);
+        if(slideAnimator>0){
+            this.Position= Position.LinearInterpolate(Vector2.Left*window*activeSlide, 1-slideAnimator);
+            slideAnimator-=(delta*0.1f);
             
         }
-        if(animator<0.10f){
+        if(slideAnimator<0.10f){
             Position = Vector2.Left*window*activeSlide;
-            animator = 0f;
+            slideAnimator = 0f;
         } 
+        
         if(Input.IsActionJustPressed("right_click")){
             if(zoom <= 1f){
                 zoom = 2f;
