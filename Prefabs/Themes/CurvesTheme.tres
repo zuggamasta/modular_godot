@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=2]
+[gd_resource type="Theme" load_steps=17 format=2]
 
 [ext_resource path="res://Assets/Fonts/zuggafont.ttf" type="DynamicFontData" id=1]
 
@@ -6,11 +6,25 @@
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
 [sub_resource type="StyleBoxEmpty" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=4]
 
 [sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="StyleBoxEmpty" id=15]
 
 [sub_resource type="StyleBoxEmpty" id=6]
 
@@ -206,9 +220,9 @@ LineEdit/colors/selection_color = Color( 0, 0, 0, 1 )
 LineEdit/constants/minimum_spaces = 12
 LineEdit/fonts/font = null
 LineEdit/icons/clear = null
-LineEdit/styles/focus = null
-LineEdit/styles/normal = null
-LineEdit/styles/read_only = null
+LineEdit/styles/focus = SubResource( 9 )
+LineEdit/styles/normal = SubResource( 10 )
+LineEdit/styles/read_only = SubResource( 11 )
 LinkButton/colors/font_color = Color( 0, 0, 0, 1 )
 LinkButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
 LinkButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
@@ -363,10 +377,10 @@ TextEdit/icons/fold = null
 TextEdit/icons/folded = null
 TextEdit/icons/space = null
 TextEdit/icons/tab = null
-TextEdit/styles/completion = null
-TextEdit/styles/focus = null
-TextEdit/styles/normal = null
-TextEdit/styles/read_only = null
+TextEdit/styles/completion = SubResource( 12 )
+TextEdit/styles/focus = SubResource( 13 )
+TextEdit/styles/normal = SubResource( 14 )
+TextEdit/styles/read_only = SubResource( 15 )
 ToolButton/colors/font_color = Color( 0, 0, 0, 1 )
 ToolButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
 ToolButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
