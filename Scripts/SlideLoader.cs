@@ -35,6 +35,13 @@ public class SlideLoader : Node2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
+        LoadSlides();
+        MoveSlides(delta);      
+        CameraZoom(delta);
+        
+    }
+    // Methods
+    public void LoadSlides(){
         if(Input.IsActionJustPressed("ui_cancel")){
             filePopup.Popup_(new Rect2(window.x/4,window.y/4,window.x/2f,window.y/2f));
             filePopup.CurrentPath ="res://Assets/";
@@ -58,7 +65,8 @@ public class SlideLoader : Node2D
             confirmed = !confirmed;
             filepath.Clear();
         }
-
+    }
+    public void MoveSlides(float delta){
         if(Input.IsActionJustPressed("ui_left")){
             activeSlide--;
             slideAnimator =1f;
@@ -78,7 +86,8 @@ public class SlideLoader : Node2D
             Position = Vector2.Left*window*activeSlide;
             slideAnimator = 0f;
         } 
-        
+    }
+    public void CameraZoom(float delta){
         if(Input.IsActionJustPressed("right_click")){
             if(zoom <= 1f){
                 zoom = 2f;
@@ -86,7 +95,6 @@ public class SlideLoader : Node2D
                 zoom = 1f;
             }
         }
-
         if(cameraZoom < zoom){
             cameraZoom += delta;
         }
@@ -96,6 +104,7 @@ public class SlideLoader : Node2D
         camera.Zoom = Vector2.One*cameraZoom;
     }
 
+    //Signals
     public void _on_FileDialog_files_selected(String[] path)
     {
         filepath.Clear();
@@ -115,4 +124,5 @@ public class SlideLoader : Node2D
         confirmed = true;
         return;
     }
+
 }

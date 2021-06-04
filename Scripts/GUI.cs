@@ -4,22 +4,10 @@ using System;
 public class GUI : MarginContainer
 {
     
-    // Called when the node enters the scene tree for the first time.
-    [Export]
-    PackedScene[] scenes;
 
-    [Export]
-    public int activeScene =0;
-    int lastScene = -1;
-
-    String lastSceneID;
-    
     public override void _Ready()
     {       
-            var newNode = (Node2D)scenes[activeScene].Instance();
-            this.AddChild(newNode);
-            lastSceneID = newNode.Name;
-            GD.Print(lastSceneID);
+        //Load NextScene
 
     }
 
@@ -36,25 +24,23 @@ public class GUI : MarginContainer
 
     private void _on_Button2_button_up(){
         Input.ActionPress("ui_left");
-        // activeScene--;
-        // if(activeScene<0) activeScene = scenes.Length-1;
-        // loadNextScene();
     }
 
     private void _on_Button3_button_up(){
         Input.ActionPress("ui_right");
-        // activeScene++;
-        // if(activeScene>=scenes.Length) activeScene = 0;
-        // loadNextScene();
+
     }
 
-    private void loadNextScene(){
-        var newNode = (Node)scenes[activeScene].Instance();
-        GetNode(lastSceneID).QueueFree();
-        this.AddChild(newNode);
-        lastSceneID = newNode.Name;
-        GD.Print(lastSceneID);
+        private void _on_Button4_button_up(){
+        Input.ActionPress("ui_accept");
+
     }
+
+    private void _on_Button5_button_up(){
+        Input.ActionPress("ui_toggle");
+
+    }
+
 
 
 }

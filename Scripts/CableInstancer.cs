@@ -1,10 +1,10 @@
 using Godot;
 using System;
 
-public class Instancer : Node2D
+public class CableInstancer : Node2D
 {
     [Export]
-    public String instancePath = "res://Prefabs/Node2D.tscn";
+    public String instancePath = "res://Prefabs/Cable.tscn";
     PackedScene instance;
 
     public bool active;
@@ -21,10 +21,13 @@ public class Instancer : Node2D
     {
         if(active){
             if(Input.IsActionJustPressed("left_click")){
-                instance = (PackedScene)ResourceLoader.Load(instancePath);
-                var newNode = (Node2D)instance.Instance();
-                //newNode.GlobalPosition = GetGlobalMousePosition();
-                this.AddChild(newNode);
+                // define Save are for cables
+                if(GetGlobalMousePosition().y > 74f){
+                    instance = (PackedScene)ResourceLoader.Load(instancePath);
+                    var newNode = (Node2D)instance.Instance();
+                    this.AddChild(newNode);
+                }
+                
             }
             if(Input.IsActionJustPressed("ui_delete")&&GetChildCount()>0){
                     GetChild(GetChildCount()-1).QueueFree();
@@ -38,6 +41,10 @@ public class Instancer : Node2D
 
         if(Input.IsActionJustPressed("ui_accept")){
             active = !active;
+        }
+
+        if(Input.IsActionJustPressed("ui_toggle")){
+            active=false;
         }
         
     }

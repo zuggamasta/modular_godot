@@ -30,11 +30,7 @@ public class Cable : Godot.Node2D
         two = GetNode<Sprite>("two");
         line = GetNode<Line2D>("Line2D");
         Position = GetGlobalMousePosition();
-        oldPos = GetLocalMousePosition();
-        GD.Print(oldPos);
-        // line.DefaultColor = Color.FromHsv(
-        //     Mathf.Abs(GetGlobalMousePosition().x/1920f/2 +
-        //     GetGlobalMousePosition().y/1080f/2),1f,0.9f);
+        oldPos = Vector2.Zero;
 
         line.DefaultColor = Color.FromHsv(166f/360f
             +Mathf.Abs(GetGlobalMousePosition().x/1920f/2 +
