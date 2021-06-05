@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Assets/Fonts/SourceSerifPro-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Icons/folder.png" type="Texture" id=2]
@@ -9,9 +9,7 @@
 [ext_resource path="res://Assets/Icons/last.png" type="Texture" id=7]
 [ext_resource path="res://Prefabs/Materials/BoilMaterial.tres" type="Material" id=8]
 [ext_resource path="res://Prefabs/Themes/gui_button_hover_style2.tres" type="StyleBox" id=9]
-[ext_resource path="res://Prefabs/CableInstancer.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Assets/Icons/function.png" type="Texture" id=11]
-[ext_resource path="res://Scripts/DrawInstancer.cs" type="Script" id=12]
 
 [sub_resource type="ShaderMaterial" id=1]
 
@@ -554,6 +552,7 @@ use_parent_material = true
 margin_left = 210.0
 margin_right = 274.0
 margin_bottom = 64.0
+focus_mode = 0
 theme = SubResource( 3 )
 custom_styles/hover = ExtResource( 9 )
 custom_styles/pressed = SubResource( 13 )
@@ -570,6 +569,7 @@ use_parent_material = true
 margin_left = 278.0
 margin_right = 342.0
 margin_bottom = 64.0
+focus_mode = 0
 theme = SubResource( 3 )
 custom_styles/hover = ExtResource( 9 )
 custom_styles/pressed = SubResource( 13 )
@@ -597,11 +597,6 @@ size_flags_vertical = 3
 theme = ExtResource( 6 )
 fit_content_height = true
 scroll_active = false
-
-[node name="CableInstancer" parent="." instance=ExtResource( 10 )]
-
-[node name="DrawInstancer" type="Node2D" parent="."]
-script = ExtResource( 12 )
 
 [connection signal="button_up" from="VBoxContainer/HBoxContainer/Button1" to="." method="_on_Button1_button_up"]
 [connection signal="button_up" from="VBoxContainer/HBoxContainer/Button2" to="." method="_on_Button2_button_up"]

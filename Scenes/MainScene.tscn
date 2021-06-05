@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
+[ext_resource path="res://Scripts/DrawInstancer.cs" type="Script" id=1]
 [ext_resource path="res://Prefabs/Themes/LoaderTheme.tres" type="Theme" id=2]
+[ext_resource path="res://Prefabs/CableInstancer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Prefabs/Materials/BoilMaterial.tres" type="Material" id=4]
 [ext_resource path="res://Prefabs/GUI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/SlideLoader.cs" type="Script" id=6]
@@ -59,10 +61,20 @@ margin_right = 1920.0
 rect_clip_content = true
 alignment = 1
 
+[node name="CableHolder" type="Node2D" parent="SlideLoader"]
+
+[node name="DrawHolder" type="Node2D" parent="SlideLoader"]
+
 [node name="GUI" parent="." instance=ExtResource( 5 )]
 anchor_right = 0.0
+margin_top = 1.0
 margin_right = 1920.0
-margin_bottom = 1080.0
+margin_bottom = 1081.0
+
+[node name="CableInstancer" parent="." instance=ExtResource( 3 )]
+
+[node name="DrawInstancer" type="Node2D" parent="."]
+script = ExtResource( 1 )
 
 [connection signal="confirmed" from="SlideLoader/MarginContainer/VBoxContainer/FileDialog" to="SlideLoader" method="_on_FileDialog_confirmed"]
 [connection signal="file_selected" from="SlideLoader/MarginContainer/VBoxContainer/FileDialog" to="SlideLoader" method="_on_FileDialog_file_selected"]

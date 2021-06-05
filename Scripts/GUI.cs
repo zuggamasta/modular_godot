@@ -37,7 +37,7 @@ public class GUI : MarginContainer
     }
 
     private void _on_Button5_button_up(){
-        Input.ActionPress("ui_toggle");
+        Input.ActionPress("ui_draw");
 
     }
 

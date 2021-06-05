@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using Parent;
 
 public class Draw : Node2D
 {
@@ -10,16 +11,21 @@ public class Draw : Node2D
     Line2D line;
     [Export]
     float threshold = 5f;
+
+    Vector2 initial;
     Vector2 last;
     Vector2 current;
 
     float animator;
     bool active;
-
     bool done;
+
+    Node2D parent;
     public override void _Ready()
     {
         line = GetNode<Line2D>("Line2D");
+        parent = GetNode<Node2D>("/root/MainScene/SlideLoader/DrawHolder");
+        
     }
     public override void _Process(float delta)
     {
@@ -37,11 +43,17 @@ public class Draw : Node2D
 
     public void GatherPoints(){
         if(Input.IsActionJustPressed("left_click")){
-            last = GetGlobalMousePosition();
+            initial = GetGlobalMousePosition();
+            last = initial;
             active=true;
+
+            GD.Print("initial");
+            Position = initial;
+            
+
         }
         if(Input.IsActionPressed("left_click")&&active){
-            current = GetGlobalMousePosition();
+            current = GetGlobalMousePosition()-initial;
             if(Mathf.Abs(last.x-current.x)>threshold){
                 linePoints.Add(current);
                 last = current;
@@ -50,6 +62,11 @@ public class Draw : Node2D
         if(Input.IsActionJustReleased("left_click")){
             active = false;
             done =true;
+        
+            ParentManager.KeepTransform(this,parent);
+
+
+
         }
     }
 
@@ -64,18 +81,25 @@ public class Draw : Node2D
     }
 
     public List<Vector2> LastToFirst(List<Vector2> list){
+        
         var array = list.ToArray();
-        int index = array.Length-1;
-        Vector2 last = array[index];
-        for(int i =index ; i > 0 ; i--){
+        int max = array.Length-1;
+        if(max>1){
+            Vector2 last = array[max];
+            for(int i =max ; i > 0 ; i--){
             array[i].y = array[i-1].y;
             if(i == 1)        array[0].y=last.y;
 
+            }
+            list.Clear();
+            foreach(Vector2 a in array){
+                list.Add(a);
+            }
+        }else{
+            GD.Print("Not enough Data, queue for deletion");
+            this.QueueFree();
         }
-        list.Clear();
-        foreach(Vector2 a in array){
-            list.Add(a);
-        }
+        
         return list;
     }
 }

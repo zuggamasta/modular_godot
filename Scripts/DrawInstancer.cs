@@ -7,24 +7,24 @@ public class DrawInstancer : Node2D
     [Export]
     public String instancePath = "res://Prefabs/Draw.tscn";
     PackedScene instance;
+    Node2D drawHolder;
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        
+        drawHolder = GetNode<Node2D>("/root/MainScene/SlideLoader/DrawHolder");
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        if(Input.IsActionJustPressed("ui_toggle")){
+        if(Input.IsActionJustPressed("ui_draw")){
+            // instance line
             instance = (PackedScene)ResourceLoader.Load(instancePath);
             var newNode = (Node2D)instance.Instance();
             this.AddChild(newNode);
         }
 
-        if(Input.IsActionJustPressed("ui_delete")&&GetChildCount()>0){
-            GetChild(GetChildCount()-1).QueueFree();
+        if(Input.IsActionJustPressed("ui_delete")&&drawHolder.GetChildCount()>0){
+            drawHolder.GetChild(drawHolder.GetChildCount()-1).QueueFree();
         }
 
         if(Input.IsActionJustPressed("ui_cancel")){
