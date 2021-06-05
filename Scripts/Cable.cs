@@ -1,44 +1,45 @@
 using Godot;
 using System;
+using Parent;
 
 public class Cable : Godot.Node2D
 {
-
+    //Nodes
     Sprite one;
     Sprite two;
-
-    bool isFixed = false;
-
     Line2D line;
-    Vector2 oldPos;
+    Node2D parent;
+
+    // Cable Data
+    bool isFixed = false;
+    Vector2 initial;
     Vector2 currentPos;
 
+    // Animation Data
     float decay;
     float animator;
     [Export]
     public float wiggleSpeed = 10;
     [Export]
     public float wiggleAmplitude =16;
-
     [Export]
-    public float gravity = 256;
-
-    // Called when the node enters the scene tree for the first time.
+    public float gravity = 256; // <----- max gravity in pixel
     public override void _Ready()
     {
         one = GetNode<Sprite>("one");
         two = GetNode<Sprite>("two");
         line = GetNode<Line2D>("Line2D");
-        Position = GetGlobalMousePosition();
-        oldPos = Vector2.Zero;
+        parent = GetNode<Node2D>("/root/MainScene/SlideLoader/DrawHolder");
 
+
+        initial =  GetGlobalMousePosition();
+        Position = initial;
         line.DefaultColor = Color.FromHsv(166f/360f
             +Mathf.Abs(GetGlobalMousePosition().x/1920f/2 +
             GetGlobalMousePosition().y/1080f/2)*0.12f
         ,0.76f,0.69f);
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
         if(!Input.IsActionJustReleased("left_click") && !isFixed){
@@ -50,7 +51,7 @@ public class Cable : Godot.Node2D
                 float percent = ((float)i/(float)line.Points.Length);
                 // pixel x position of point in line
                 float xPos = 
-                    (currentPos.x-oldPos.x)*percent
+                    (currentPos.x-0f)*percent
                     +Mathf.Sin(
                         animator*wiggleSpeed
                         +percent*2*Mathf.Pi)
@@ -58,7 +59,7 @@ public class Cable : Godot.Node2D
                 // pixel y position of point in line
                 float yPos =
                     (Mathf.Sin(percent*Mathf.Pi))*gravity
-                    +(currentPos.y-oldPos.y)
+                    +(currentPos.y-0f)
                     *percent+Mathf.Cos(
                         animator*wiggleSpeed
                         +percent*2*Mathf.Pi)
@@ -74,11 +75,11 @@ public class Cable : Godot.Node2D
                 decay= 1f;
             }
             isFixed = true;
+            ParentManager.KeepTransform(this,parent);
+
             
         }
         
-
-
         if(decay>0){
             var currentPos = one.Position;
 
@@ -87,7 +88,7 @@ public class Cable : Godot.Node2D
                 float percent = ((float)i/(float)line.Points.Length);
                 // pixel x position of point in line
                 float xPos = 
-                    (currentPos.x-oldPos.x)*percent
+                    (currentPos.x-0f)*percent
                     +Mathf.Sin(
                         animator*wiggleSpeed
                         +percent*2*Mathf.Pi)
@@ -95,7 +96,7 @@ public class Cable : Godot.Node2D
                 // pixel y position of point in line
                 float yPos =
                     (Mathf.Sin(percent*Mathf.Pi))*gravity
-                    +(currentPos.y-oldPos.y)*percent
+                    +(currentPos.y-0f)*percent
                     +Mathf.Cos(
                         animator*wiggleSpeed
                         +percent*2*Mathf.Pi)
