@@ -18,22 +18,27 @@ public class Cable : Godot.Node2D
     // Animation Data
     float decay;
     float animator;
+
     [Export]
     public float wiggleSpeed = 10;
     [Export]
     public float wiggleAmplitude =16;
     [Export]
-    public float gravity = 256; // <----- max gravity in pixel
+    public float gravity = 256; // <--- max gravity in pixel
+    
     public override void _Ready()
     {
-        one = GetNode<Sprite>("one");
-        two = GetNode<Sprite>("two");
-        line = GetNode<Line2D>("Line2D");
+        // assing nodes
+        one = GetChild<Sprite>(0);
+        two = GetChild<Sprite>(1);
+        line = GetChild<Line2D>(2);
         parent = GetNode<Node2D>("/root/MainScene/SlideLoader/DrawHolder");
 
-
+        // get initial position
         initial =  GetGlobalMousePosition();
         Position = initial;
+
+        // set color offset to make cables distinguishable. Color is not random, but set by the position on screen.
         line.DefaultColor = Color.FromHsv(166f/360f
             +Mathf.Abs(GetGlobalMousePosition().x/1920f/2 +
             GetGlobalMousePosition().y/1080f/2)*0.12f
@@ -46,6 +51,7 @@ public class Cable : Godot.Node2D
             var currentPos = GetLocalMousePosition();
             one.Position = currentPos;
 
+            // Update all points in line
             for(int i = 1; i < line.Points.Length; i++){
                 // relative x position of point in line
                 float percent = ((float)i/(float)line.Points.Length);
@@ -74,6 +80,7 @@ public class Cable : Godot.Node2D
             if(Input.IsActionJustReleased("left_click")&& !isFixed){
                 decay= 1f;
             }
+            // fix everything while the animation starts
             isFixed = true;
             ParentManager.KeepTransform(this,parent);
 
@@ -82,7 +89,8 @@ public class Cable : Godot.Node2D
         
         if(decay>0){
             var currentPos = one.Position;
-
+            
+            // Update all points in line
             for(int i = 1; i < line.Points.Length; i++){
                 // relative x position of point in line
                 float percent = ((float)i/(float)line.Points.Length);

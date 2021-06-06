@@ -6,7 +6,6 @@ public class SlideLoader : Node2D
 {
     public Vector2 window = new Vector2(1920f,1080f);
 
-
     // File path and slide data
     List<String> filepath = new List<String>();
     List<Sprite> slides = new List<Sprite>();
@@ -22,17 +21,19 @@ public class SlideLoader : Node2D
     float zoom = 1;
     float cameraZoom = 1;
 
+    //  ###############################  //
+    //  # SLIDES ARE EXPECTED TO HAVE #  //
+    //  # A RESOLUTION OF 1920x1080px #  //
+    //  ###############################  //
 
-
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        // assing nodes
         camera = GetNode<Camera2D>("/root/MainScene/Camera2D");
         filePopup = GetNode<FileDialog>("MarginContainer/VBoxContainer/FileDialog");
         slideContainer = GetNode<HBoxContainer>("MarginContainer/VBoxContainer/HBoxContainer");
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
         LoadSlides();
@@ -40,32 +41,37 @@ public class SlideLoader : Node2D
         CameraZoom(delta);
         
     }
-    // Methods
+    // Handle slide ui and loading/instancing 
     public void LoadSlides(){
+
         if(Input.IsActionJustPressed("ui_cancel")){
+            // Center popup
             filePopup.Popup_(new Rect2(window.x/4,window.y/4,window.x/2f,window.y/2f));
             filePopup.CurrentPath ="res://Assets/";
+
+            // If available, delete all old slide nodes
             foreach(TextureRect texRec in slideContainer.GetChildren()){
                 texRec.QueueFree();
             }
         }
 
         if(filepath != null && confirmed){
-            
-
+            // instance a texturerect for all seperate paths found
             foreach(String fp in filepath){
                 GD.Print(fp);
                 var texture = ResourceLoader.Load(fp) as Texture;
                 var newNode = new TextureRect();  
                 newNode.Texture = texture;   
                 slideContainer.AddChild(newNode);               
-                GD.Print(newNode);
+                // For debugging
+                //GD.Print(newNode);
             }
-            
             confirmed = !confirmed;
             filepath.Clear();
         }
     }
+
+    // Handle slide input and current position 
     public void MoveSlides(float delta){
         if(Input.IsActionJustPressed("ui_left")){
             activeSlide--;
@@ -87,6 +93,8 @@ public class SlideLoader : Node2D
             slideAnimator = 0f;
         } 
     }
+    
+    //  Handle camera zoom and animation
     public void CameraZoom(float delta){
         if(Input.IsActionJustPressed("right_click")){
             if(zoom <= 1f){
@@ -104,23 +112,25 @@ public class SlideLoader : Node2D
         camera.Zoom = Vector2.One*cameraZoom;
     }
 
-    //Signals
+    // Signals
     public void _on_FileDialog_files_selected(String[] path)
     {
         filepath.Clear();
         foreach(String st in path){
             filepath.Add(st);
         }
-        GD.Print(filepath);
+        // for debugging
+        //GD.Print(filepath);
         
         return;
     }
 
      public void _on_FileDialog_confirmed()
     {
+        // always reset active slide to the first slide
         activeSlide =0;
-
-        GD.Print("confirmed");
+        // for debugging
+        //GD.Print("confirmed");
         confirmed = true;
         return;
     }

@@ -3,21 +3,7 @@ using System;
 
 public class GUI : MarginContainer
 {
-    
-
-    public override void _Ready()
-    {       
-        //Load NextScene
-
-    }
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(float delta)
-    {
-
-    }
-
-
+    // GUI only echos Actions on click button up    
     private void _on_Button1_button_up(){
         Input.ActionPress("ui_cancel");
     }
@@ -40,7 +26,5 @@ public class GUI : MarginContainer
         Input.ActionPress("ui_draw");
 
     }
-
-
 
 }

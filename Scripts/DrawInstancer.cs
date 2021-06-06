@@ -23,10 +23,12 @@ public class DrawInstancer : Node2D
             this.AddChild(newNode);
         }
 
+        // if lines are present delete the last node
         if(Input.IsActionJustPressed("ui_delete")&&drawHolder.GetChildCount()>0){
             drawHolder.GetChild(drawHolder.GetChildCount()-1).QueueFree();
         }
 
+        // if lines are present delete allnodes
         if(Input.IsActionJustPressed("ui_cancel")){
             foreach(Node2D node in this.GetChildren()){
                 node.QueueFree();

@@ -51,6 +51,3 @@ centered = false
 hframes = 4
 vframes = 4
 frame = 5
-
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2( 960, 540 )

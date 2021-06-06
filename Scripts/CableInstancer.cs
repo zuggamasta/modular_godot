@@ -14,8 +14,8 @@ public class CableInstancer : Node2D
 
     public override void _Ready()
     {
-        highlight = GetNode<Node2D>("active");
-        // not yet implemented
+        // assing nodes
+        highlight = GetChild<Node2D>(0);
         cableHolder = GetNode<Node2D>("/root/MainScene/SlideLoader/CableHolder");
     }
 

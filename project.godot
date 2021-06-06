@@ -11,8 +11,8 @@ config_version=4
 [application]
 
 config/name="modular_godot"
-run/main_scene="res://Scenes/MainScene.tscn"
-boot_splash/image="res://Assets/splash.png"
+run/main_scene="res://Scenes/CustomSplash.tscn"
+boot_splash/image="res://Assets/loading.png"
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0.92549, 0.917647, 0.878431, 1 )
 config/icon="res://Assets/Icons/postit_surface.png"

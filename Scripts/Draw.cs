@@ -6,21 +6,23 @@ using Parent;
 public class Draw : Node2D
 {
 
+    // line data
     List<Vector2> linePoints = new List<Vector2>();
-
     Line2D line;
     [Export]
     float threshold = 5f;
-
     Vector2 initial;
     Vector2 last;
     Vector2 current;
+    Node2D parent;
 
+
+    // state and animation data
     float animator;
     bool active;
     bool done;
 
-    Node2D parent;
+    // parent
     public override void _Ready()
     {
         line = GetNode<Line2D>("Line2D");
@@ -46,11 +48,9 @@ public class Draw : Node2D
             initial = GetGlobalMousePosition();
             last = initial;
             active=true;
-
-            GD.Print("initial");
-            Position = initial;
-            
-
+            // for debugging
+            //GD.Print("initial");
+            Position = initial;         
         }
         if(Input.IsActionPressed("left_click")&&active){
             current = GetGlobalMousePosition()-initial;
@@ -64,22 +64,21 @@ public class Draw : Node2D
             done =true;
         
             ParentManager.KeepTransform(this,parent);
-
-
-
         }
     }
 
     public void RenderCurve(){
+        // only render if there are points in the curve
         if(linePoints.Count!=0){
-            if(!done){
-                line.Points = linePoints.ToArray();
-            }else{
-                line.Points = linePoints.ToArray();
-            }
+            line.Points = linePoints.ToArray();
         }
     }
 
+    // animate last to first
+    //
+    // this is using a lot of .ToArray() and back to lists and could be optimized
+    // by initialising an array right after we know how many points there are in 
+    // the created line 
     public List<Vector2> LastToFirst(List<Vector2> list){
         
         var array = list.ToArray();
