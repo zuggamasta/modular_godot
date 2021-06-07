@@ -7,7 +7,8 @@ This project is a long weekend (dream) project come true. While planning out a s
 The tool is build in and around the godot game engine, using the c#/mono branch. That said, this part of godot boots with a big warning that it's still experimentals, take this as a note of caution. It's currently setup to build to the web, but this will halve limited features (loading of assets)
 
 ### Building this Project
-To build and run this project first get [godotengine.org/download](https://godotengine.org/download) (it's free and open source). You'll also need to setup your system to support the c#/mono workflow with Godot. It's not that hard and there is a good guide for that available on the wiki ([c_sharp_basics](https://docs.godotengine.org/en/stable/getting_started/scripting/c_sharp/c_sharp_basics.html))
+To build and run this project: First get [godotengine.org/download](https://godotengine.org/download) (it's free and open source). You'll also need to setup your system to support the c#/mono workflow with Godot. It's not that hard and there is a good guide for that available on the wiki ([c_sharp_basics](https://docs.godotengine.org/en/stable/getting_started/scripting/c_sharp/c_sharp_basics.html))
+After that it's not much more than opening this project in godot and hitting play in the editor. 
 
 ### Screenhsots
 examples | gifs
